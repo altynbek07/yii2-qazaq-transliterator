@@ -1,6 +1,7 @@
 # Yii2 Qazaq Transliterator
 
 [Yii2](http://www.yiiframework.com) qazaq transliterator behavior
+![Qazaq Transliterator](https://tengrinews.kz/userdata/news/2017/news_315984/photo_212587.jpg)
 
 ## Installation
 
