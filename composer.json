@@ -20,7 +20,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "altynbek07\\qazaqTransliterator\\": "src/"
+            "altynbek07\\qazaqTransliterator\\": "src/behaviors/"
         }
     },
     "minimum-stability": "stable",
