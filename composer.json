@@ -1,15 +1,21 @@
 {
     "name": "altynbek07/yii2-qazaq-transliterator",
     "description": "Transliteration Kazakh symbols on the new",
-    "type": "library",
-    "require": {
-        "php": "^5.4"
-    },
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "qazaq",
+        "behavior",
+        "kazakh",
+        "transliterator",
+        "latin"
+    ],
     "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Altynbek Kazezov",
-            "email": "altinbek__97@mail.ru"
+            "email": "altinbek__97@mail.ru",
+            "role": "Developer"
         }
     ],
     "autoload": {
@@ -17,5 +23,8 @@
             "altynbek07\\qazaqTransliterator\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
 }
