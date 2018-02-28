@@ -37,7 +37,7 @@ public function behaviors()
     return [
         'slug' => [
             ...
-            'attribute' => ['name', 'text'],
+            'attributes' => ['name', 'text'],
             ...
         ]
     ];
