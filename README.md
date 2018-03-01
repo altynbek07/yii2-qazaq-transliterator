@@ -35,7 +35,7 @@ Transliteration multiple attributes:
 public function behaviors()
 {
     return [
-        'slug' => [
+        'transliterate' => [
             ...
             'attributes' => ['name', 'text'],
             ...
