@@ -29,7 +29,7 @@ public function behaviors()
 }
 ```
 
-Slug may be generated from multiple and related attributes:
+Transliteration multiple attributes:
 
 ```php
 public function behaviors()
