@@ -19,6 +19,7 @@ class QazaqTransliterator extends Behavior
     public $languagesModelClassName = null;
 
     /**
+     * Value from column 'code' in language table
      * @var string
      */
     public $qazaqLanguageCode = 'qq';
@@ -32,7 +33,7 @@ class QazaqTransliterator extends Behavior
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_VALIDATE => 'touch'
+            ActiveRecord::EVENT_AFTER_VALIDATE => 'touch'
         ];
     }
 
@@ -59,6 +60,7 @@ class QazaqTransliterator extends Behavior
     }
 
     /**
+     * Транслитерация текста на новый казахский алфавит
      * @param string $text
      * @return string
      */
@@ -69,9 +71,10 @@ class QazaqTransliterator extends Behavior
 
 
     /**
+     * Новый казахский алфавит
      * @return array
      */
-    public static function getAlphabet()
+    private static function getAlphabet()
     {
         return [
             'а' => 'a',
@@ -125,7 +128,7 @@ class QazaqTransliterator extends Behavior
             'Ғ' => 'Ǵ',
             'Д' => 'D',
             'Е' => 'E',
-            'Ё' => 'IO',
+            'Ё' => 'Io',
             'Ж' => 'J',
             'З' => 'Z',
             'И' => 'I',

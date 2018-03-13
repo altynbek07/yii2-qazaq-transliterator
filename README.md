@@ -44,6 +44,21 @@ public function behaviors()
 }
 ```
 
+```php
+public function behaviors()
+{
+    return [
+        'transliterate' => [
+            ...
+            'languagesModelClassName' => '\app\modules\languages\models\Languages',
+            'qazaqLanguageCode' => 'qq',
+            'languageIdColumnName' => 'lang_id',
+            ...
+        ]
+    ];
+}
+```
+
 ## Author
 
 [Altynbek Kazezov](https://github.com/altynbek07/), e-mail: [altinbek__97@mail.ru](mailto:altinbek__97@mail.ru)
