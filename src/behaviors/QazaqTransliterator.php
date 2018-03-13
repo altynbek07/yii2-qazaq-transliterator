@@ -19,13 +19,13 @@ class QazaqTransliterator extends Behavior
     public $languagesModelClassName = null;
 
     /**
-     * Value from column 'code' in language table
+     * Value from column 'code' in language model table
      * @var string
      */
     public $qazaqLanguageCode = 'qq';
 
     /**
-     *
+     * Name of language id column in model table
      * @var string
      */
     public $languageIdColumnName = 'lang_id';
@@ -39,23 +39,26 @@ class QazaqTransliterator extends Behavior
 
     public function touch($event)
     {
-        /* @var $owner ActiveRecord */
-        $owner = $this->owner;
         $this->attributes = (array)$this->attributes;
         $languagesModelClassName = $this->languagesModelClassName;
 
-        if ($languagesModelClassName) {
-            $qazaqLanguageId = $languagesModelClassName::findOne(['code' => $this->qazaqLanguageCode])->id;
+        if ($languagesModelClassName && !class_exists($languagesModelClassName)) {
+            throw new \InvalidArgumentException();
+        }
 
-            if ($owner->{$this->languageIdColumnName} === $qazaqLanguageId) {
-                foreach ($this->attributes as $attribute) {
-                    $owner->{$attribute} = self::transliterate($owner->{$attribute});
-                }
-            }
-        } else {
-            foreach ($this->attributes as $attribute) {
-                $owner->{$attribute} = self::transliterate($owner->{$attribute});
-            }
+        $qazaqLanguageId = $languagesModelClassName ?
+            $languagesModelClassName::findOne(['code' => $this->qazaqLanguageCode])->id
+            : null;
+        
+        if (empty($qazaqLanguageId) || $this->owner->{$this->languageIdColumnName} === $qazaqLanguageId) {
+            $this->transliterateAttributes();
+        }
+    }
+
+    private function transliterateAttributes()
+    {
+        foreach ($this->attributes as $attribute) {
+            $this->owner->{$attribute} = self::transliterate($this->owner->{$attribute});
         }
     }
 
