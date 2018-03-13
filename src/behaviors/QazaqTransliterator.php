@@ -12,30 +12,66 @@ class QazaqTransliterator extends Behavior
      */
     public $attributes = 'name';
 
+    /**
+     * Example: \app\modules\languages\models\Languages
+     * @var string
+     */
+    public $languagesModelClassName = null;
+
+    /**
+     * @var string
+     */
+    public $qazaqLanguageCode = 'qq';
+
+    /**
+     *
+     * @var string
+     */
+    public $languageIdColumnName = 'lang_id';
+
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_VALIDATE => 'transliterate'
+            ActiveRecord::EVENT_BEFORE_VALIDATE => 'touch'
         ];
     }
 
-    public function transliterate($event)
+    public function touch($event)
     {
         /* @var $owner ActiveRecord */
         $owner = $this->owner;
-
         $this->attributes = (array)$this->attributes;
+        $languagesModelClassName = $this->languagesModelClassName;
 
-        foreach ($this->attributes as $attribute) {
-            $owner->{$attribute} = strtr($owner->{$attribute}, $this->getAlphabet());
+        if ($languagesModelClassName) {
+            $qazaqLanguageId = $languagesModelClassName::findOne(['code' => $this->qazaqLanguageCode])->id;
+
+            if ($owner->{$this->languageIdColumnName} === $qazaqLanguageId) {
+                foreach ($this->attributes as $attribute) {
+                    $owner->{$attribute} = self::transliterate($owner->{$attribute});
+                }
+            }
+        } else {
+            foreach ($this->attributes as $attribute) {
+                $owner->{$attribute} = self::transliterate($owner->{$attribute});
+            }
         }
-
     }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public static function transliterate($text)
+    {
+        return strtr($text, self::getAlphabet());
+    }
+
 
     /**
      * @return array
      */
-    private function getAlphabet()
+    public static function getAlphabet()
     {
         return [
             'а' => 'a',
@@ -113,15 +149,15 @@ class QazaqTransliterator extends Behavior
             'Х' => 'H',
             'Һ' => 'H',
             'Ц' => 'C',
-            'Ч' => 'CH',
-            'Ш' => 'SH',
-            'Щ' => 'SCH',
+            'Ч' => 'Ch',
+            'Ш' => 'Sh',
+            'Щ' => 'Sch',
             'Ъ' => '',
             'Ы' => 'Y',
             'Ь' => '',
             'Э' => 'E',
-            'Ю' => 'IÝ',
-            'Я' => 'IÁ',
+            'Ю' => 'Iý',
+            'Я' => 'Iá',
         ];
     }
 }

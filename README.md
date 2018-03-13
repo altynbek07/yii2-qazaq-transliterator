@@ -11,7 +11,7 @@ The preferred way to install this extension is through [Composer](http://getcomp
 
 Either run ```composer require altynbek07/yii2-qazaq-transliterator```
 
-or add ```"altynbek07/yii2-qazaq-transliterator": "^0.1.2"``` to the require section of your ```composer.json```
+or add ```"altynbek07/yii2-qazaq-transliterator": "^0.1"``` to the require section of your ```composer.json```
 
 ### Using
 
