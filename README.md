@@ -9,9 +9,9 @@
 
 The preferred way to install this extension is through [Composer](http://getcomposer.org/).
 
-Either run ```composer require altynbek07/yii2-qazaq-transliterator```
+Either run ```composer require altynbek07/yii2-qazaq-transliterator:^0.2```
 
-or add ```"altynbek07/yii2-qazaq-transliterator": "^0.1"``` to the require section of your ```composer.json```
+or add ```"altynbek07/yii2-qazaq-transliterator": "^0.2"``` to the require section of your ```composer.json```
 
 ### Using
 
