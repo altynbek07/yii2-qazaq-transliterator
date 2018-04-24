@@ -22,7 +22,7 @@ public function behaviors()
 {
     return [
         'transliterate' => [
-            'class' => 'altynbek07\qazaqTransliterator\QazaqTransliterator',
+            'class' => 'altynbek07\yii2QazaqTransliterator\QazaqTransliteratorBehavior',
             'attributes' => 'name',
         ]
     ];
@@ -44,15 +44,16 @@ public function behaviors()
 }
 ```
 
+If you have multilanguage model, you can add this attributes:
 ```php
 public function behaviors()
 {
     return [
         'transliterate' => [
             ...
-            'languagesModelClassName' => '\app\modules\languages\models\Languages',
-            'qazaqLanguageCode' => 'qq',
-            'languageIdColumnName' => 'lang_id',
+            'isTranslationModel' => true,
+            'languageColumnName' => 'lang',     // Name of language column in model table
+            'languageColumnValue' => 'qq-KZ',   // Value from new qazaq language column in model table
             ...
         ]
     ];

@@ -20,10 +20,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "altynbek07\\qazaqTransliterator\\": "src/behaviors/"
+            "altynbek07\\yii2QazaqTransliterator\\": "src/behaviors/"
         }
     },
     "minimum-stability": "stable",
+    "require": {
+        "altynbek07/qazaq-transliterator": "^0.1"
+    },
     "require-dev": {
         "phpunit/phpunit": "^5.4"
     }
